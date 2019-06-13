@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Ladislav Salom</Authors>
+    <Company>Devhand</Company>
+    <Description>TriggerIt is a lightweight library for triggering actions based on logged events or uptime. It's origin is in Xamarin Forms development but it can be easily extended.</Description>
+    <PackageProjectUrl>https://github.com/ladislavsalom/TriggerIt</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ladislavsalom/TriggerIt</RepositoryUrl>
+    <PackageTags>trigger event uptime hangfire xamarin forms android ios uwp</PackageTags>
+  </PropertyGroup>
+
+</Project>

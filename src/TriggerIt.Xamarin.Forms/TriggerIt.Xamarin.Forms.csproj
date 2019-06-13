@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Xamarin Forms extensions for TriggerIt library.</Description>
+    <PackageProjectUrl>https://github.com/ladislavsalom/TriggerIt</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ladislavsalom/TriggerIt</RepositoryUrl>
+    <PackageTags>trigger event xamarin forms</PackageTags>
+    <Authors>Ladislav Salom</Authors>
+    <Company>Devhand</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.0.0.446417" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TriggerIt\TriggerIt.csproj" />
+  </ItemGroup>
+
+</Project>
