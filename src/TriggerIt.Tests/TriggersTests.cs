@@ -125,5 +125,28 @@ namespace TriggerIt.Tests
             timer.Tick();
             Assert.True(trigger.HitCount == 2);
         }
+
+        [Fact]
+        public async Task TriggerOnEventCounts()
+        {
+            var service = await Init.TriggerItWithImmediateTimerAsync();
+            var trigger = Init.HitTrigger();
+
+            var eventName = "test";
+            service.RegisterTrigger(trigger, TriggerPlanning.If().EventCountIs(eventName, 3));
+            service.StartTimerInternal();
+
+            await service.LogEventAsync(eventName);
+            Assert.True(trigger.WasNotHit);
+
+            await service.LogEventAsync(eventName);
+            Assert.True(trigger.WasNotHit);
+
+            await service.LogEventAsync(eventName);
+            Assert.True(trigger.WasHitOnce);
+
+            await service.LogEventAsync(eventName);
+            Assert.True(trigger.WasHitOnce);
+        }
     }
 }

@@ -8,6 +8,7 @@
     <PackageTags>trigger event xamarin forms</PackageTags>
     <Authors>Ladislav Salom</Authors>
     <Company>Devhand</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

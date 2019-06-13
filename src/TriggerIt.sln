@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TriggerIt", "TriggerIt\TriggerIt.csproj", "{B7723EA7-A87C-4ED7-877C-145789660A42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriggerIt.Xamarin.Forms", "TriggerIt.Xamarin.Forms\TriggerIt.Xamarin.Forms.csproj", "{CAAD2B18-2B85-439A-B9F3-FAD4A9418364}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TriggerIt.Xamarin.Forms", "TriggerIt.Xamarin.Forms\TriggerIt.Xamarin.Forms.csproj", "{CAAD2B18-2B85-439A-B9F3-FAD4A9418364}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BD439E01-E488-45A5-9353-C9D3F9ED6A2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriggerIt.Tests", "TriggerIt.Tests\TriggerIt.Tests.csproj", "{3D4E31C5-B23D-48EB-8B96-7D456EB10E67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TriggerIt.Tests", "TriggerIt.Tests\TriggerIt.Tests.csproj", "{3D4E31C5-B23D-48EB-8B96-7D456EB10E67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

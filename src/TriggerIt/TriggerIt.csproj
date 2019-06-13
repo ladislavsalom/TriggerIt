@@ -8,6 +8,7 @@
     <PackageProjectUrl>https://github.com/ladislavsalom/TriggerIt</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ladislavsalom/TriggerIt</RepositoryUrl>
     <PackageTags>trigger event uptime hangfire xamarin forms android ios uwp</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>
