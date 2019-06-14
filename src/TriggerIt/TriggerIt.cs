@@ -136,9 +136,9 @@ namespace TriggerIt
                                                                         this.cachedEventStats.All(i => triggerKv.plan.EventsCounts.Any(y => y.Key == i.Key && y.Value(i.Value))));
                 conditions.Add(eventsCounts);
 
-                (bool has, Func<bool> should) eventsCountsSinceUptime = (has: triggerKv.plan.EventsCounts.Any(),
+                (bool has, Func<bool> should) eventsCountsSinceUptime = (has: triggerKv.plan.EventsCountsSinceUptime.Any(),
                                                             should: () => this.cachedEventStats.Any() &&
-                                                                        this.cachedEventStatsSinceUptime.All(i => triggerKv.plan.EventsCounts.Any(y => y.Key == i.Key && y.Value(i.Value))));
+                                                                        this.cachedEventStatsSinceUptime.All(i => triggerKv.plan.EventsCountsSinceUptime.Any(y => y.Key == i.Key && y.Value(i.Value))));
                 conditions.Add(eventsCountsSinceUptime);
 
                 (bool has, Func<bool> should) minRealDateTime = (has: triggerKv.plan.MinRealDateTime != null,
