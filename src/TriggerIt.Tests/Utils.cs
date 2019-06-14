@@ -8,9 +8,9 @@ namespace TriggerIt.Tests
 {
     public static class Init
     {
-        public static async Task<TriggerIt> TriggerItWithImmediateTimerAsync()
+        public static async Task<TriggerIt> TriggerItWithImmediateTimerAsync(bool history = false)
         {
-            var s = new TriggerIt(new Mock.ImmediateTimer(100), new Mock.Persistor());
+            var s = new TriggerIt(new Mock.ImmediateTimer(100), (history ? (Persisting.IPersitor)new Mock.PersistorWithHistory() : new Mock.PersistorWithoutHistory()));
 
             s.DateTimeService = new Mock.DateTimeService();
 
@@ -19,10 +19,10 @@ namespace TriggerIt.Tests
             return s;
         }
 
-        public static async Task<(TriggerIt triggerIt, Mock.ManualTimer timer)> TriggerItWithManualTimerAsync()
+        public static async Task<(TriggerIt triggerIt, Mock.ManualTimer timer)> TriggerItWithManualTimerAsync(bool history = false)
         {
             var timer = new Mock.ManualTimer();
-            var s = new TriggerIt(timer, new Mock.Persistor());
+            var s = new TriggerIt(timer, (history ? (Persisting.IPersitor)new Mock.PersistorWithHistory() : new Mock.PersistorWithoutHistory()));
 
             s.DateTimeService = new Mock.DateTimeService();
 
@@ -38,7 +38,7 @@ namespace TriggerIt.Tests
 
         public class HitTriggerTrigger : Triggers.Trigger
         {
-            public override string Name => nameof(HitTrigger);
+            public override string Name => nameof(HitTriggerTrigger);
 
             public TriggerContext LastContext { get; set; }
             public int HitCount { get; set; }

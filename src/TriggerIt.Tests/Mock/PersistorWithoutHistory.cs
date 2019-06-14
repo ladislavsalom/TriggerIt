@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace TriggerIt.Tests.Mock
 {
-    public class Persistor : Persisting.IEventsPersitor
+    public class PersistorWithoutHistory : Persisting.IPersitor
     {
         private List<Event> events = new List<Event>();
-        private List<string> executedTriggers = new List<string>();
+        private List<ExecutedTrigger> executedTriggers = new List<ExecutedTrigger>();
 
         public async Task<IEnumerable<Event>> LoadEventsAsync()
         {
             return await Task.FromResult(this.events);
         }
 
-        public async Task<IEnumerable<string>> LoadExecutedTriggersAsync()
+        public async Task<IEnumerable<ExecutedTrigger>> LoadExecutedTriggersAsync()
         {
             return await Task.FromResult(this.executedTriggers);
         }
@@ -27,7 +27,7 @@ namespace TriggerIt.Tests.Mock
             await Task.CompletedTask;
         }
 
-        public async Task PersistsExecutedTriggersAsync(List<string> triggerNames)
+        public async Task PersistsExecutedTriggersAsync(List<ExecutedTrigger> triggerNames)
         {
             this.executedTriggers.AddRange(triggerNames);
 

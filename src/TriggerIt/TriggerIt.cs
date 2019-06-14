@@ -25,18 +25,18 @@ namespace TriggerIt
         private Dictionary<string, int> cachedEventStats = new Dictionary<string, int>();
         private Dictionary<string, int> cachedEventStatsSinceUptime = new Dictionary<string, int>();
 
-        private List<string> executedTriggers = new List<string>();
-        private List<string> executedTriggersSinceUptime = new List<string>();
+        private List<ExecutedTrigger> executedTriggers = new List<ExecutedTrigger>();
+        private List<ExecutedTrigger> executedTriggersSinceUptime = new List<ExecutedTrigger>();
 
         internal ITimer Timer { get; set; }
-        internal IEventsPersitor EventsPersitor { get; set; }
+        internal IPersitor EventsPersitor { get; set; }
 
         internal Utils.IDateTimeService DateTimeService { get; set; } = new Utils.DateTimeService();
 
         /// <summary>
         /// 
         /// </summary>
-        public TriggerIt(ITimer timer, IEventsPersitor eventsPersitor)
+        public TriggerIt(ITimer timer, IPersitor eventsPersitor)
         {
             this.EventsPersitor = eventsPersitor ?? throw new ArgumentNullException(nameof(eventsPersitor));
             this.Timer = timer ?? throw new ArgumentNullException(nameof(timer));
@@ -117,7 +117,7 @@ namespace TriggerIt
             if (this.executingTriggers) return;
             this.executingTriggers = true;
 
-            var triggersToPersist = new List<string>();
+            var triggersToPersist = new List<ExecutedTrigger>();
 
             foreach (var triggerKv in this.triggers.ToList())
             {
@@ -166,8 +166,8 @@ namespace TriggerIt
             // Check if trigger should run based on periodicity
             bool ShouldRunOnTriggerPeridiocity(Triggers.TriggerPlanningPeriodicities periodicity, Trigger trigger)
             {
-                if (periodicity == TriggerPlanningPeriodicities.OnceEver && this.executedTriggers.Contains(trigger.Name)) return false;
-                if (periodicity == TriggerPlanningPeriodicities.OnceSinceZeroUptime && this.executedTriggersSinceUptime.Contains(trigger.Name)) return false;
+                if (periodicity == TriggerPlanningPeriodicities.OnceEver && this.executedTriggers.Any(i => i.Name == trigger.Name)) return false;
+                if (periodicity == TriggerPlanningPeriodicities.OnceSinceZeroUptime && this.executedTriggersSinceUptime.Any(i => i.Name == trigger.Name)) return false;
 
                 return true;
             }
@@ -179,13 +179,14 @@ namespace TriggerIt
                 {
                     LastEvent = this.inMemoryEvents.LastOrDefault()?.Name,
                     Uptime = TimeSpan.FromSeconds(this.uptimeSeconds),
-                    TriggerTypeExecutedCount = this.executedTriggers.Count(i => i == triggerBase.Name) + 1
+                    TriggerTypeExecutedCount = this.executedTriggers.Count(i => i.Name == triggerBase.Name) + 1
                 });
 
-                this.executedTriggers.Add(triggerBase.Name);
-                this.executedTriggersSinceUptime.Add(triggerBase.Name);
+                var executedTrigger = new ExecutedTrigger(triggerBase.Name);
+                this.executedTriggers.Add(executedTrigger);
+                this.executedTriggersSinceUptime.Add(executedTrigger);
 
-                triggersToPersist.Add(triggerBase.Name);
+                triggersToPersist.Add(executedTrigger);
             }
         }
 

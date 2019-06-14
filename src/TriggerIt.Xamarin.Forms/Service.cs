@@ -13,7 +13,7 @@ namespace TriggerIt.Xamarin.Forms
             private set;
         }
 
-        public static async Task InitAsync(Persisting.IEventsPersitor eventsPersitor)
+        public static async Task InitAsync(Persisting.IPersitor eventsPersitor)
         {
             Instance = new TriggerIt(new XamarinTimer(), eventsPersitor);
             await Instance.InitializeAsync();

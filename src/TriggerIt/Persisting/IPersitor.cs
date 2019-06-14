@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace TriggerIt.Persisting
 {
-    public interface IEventsPersitor
+    public interface IPersitor
     {
         Task PersistEventAsync(Event e);
         Task<IEnumerable<Event>> LoadEventsAsync();
 
-        Task PersistsExecutedTriggersAsync(List<string> triggerNames);
-        Task<IEnumerable<string>> LoadExecutedTriggersAsync();
+        Task PersistsExecutedTriggersAsync(List<ExecutedTrigger> triggerNames);
+        Task<IEnumerable<ExecutedTrigger>> LoadExecutedTriggersAsync();
     }
 }
