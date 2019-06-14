@@ -137,7 +137,7 @@ namespace TriggerIt
                 conditions.Add(eventsCounts);
 
                 (bool has, Func<bool> should) eventsCountsSinceUptime = (has: triggerKv.plan.EventsCountsSinceUptime.Any(),
-                                                            should: () => this.cachedEventStats.Any() &&
+                                                            should: () => this.cachedEventStatsSinceUptime.Any() &&
                                                                         this.cachedEventStatsSinceUptime.All(i => triggerKv.plan.EventsCountsSinceUptime.Any(y => y.Key == i.Key && y.Value(i.Value))));
                 conditions.Add(eventsCountsSinceUptime);
 
