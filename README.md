@@ -23,8 +23,11 @@ TriggerIt.Xamarin.Forms
 1. Initialize TriggerIt service in App.cs:
 
 ```csharp
-await TriggerIt.Xamarin.Forms.Service.InitAsync();
+await TriggerIt.Xamarin.Forms.Service.InitAsync(new MyDatabasePersistor());
 ```
+
+`MyDatabasePersistor` is a custom class that implements `TriggerIt.Persisting.IPersitor` interface. The class is responsible for saving and loading triggers related data.
+See Wiki for examples.
 
 2. Create a trigger class:
 
